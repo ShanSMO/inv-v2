@@ -1,0 +1,47 @@
+<div class="top-nav-container">
+  <div class="side-bar-toggle h-100" (click)="toggleSidebar()">
+    <div class="v-mid">
+      <span>
+        <i class="ri-menu-fold-line" *ngIf="currentSidebarSize == 'MAX' "></i>
+        <i class="ri-menu-unfold-line" *ngIf="currentSidebarSize == 'MIN'"></i>
+      </span>
+    </div>
+  </div>
+  <div class="w-100">
+    <div class="v-mid">
+      <div class="t-nv-ic-container">
+        <div class="ic-c">
+          <span>
+            <i class="ri-equalizer-line nav-ic "></i>
+          </span>
+          <span class="n-count"></span>
+        </div>
+        <div class="ic-c dropdown">
+          <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>
+              <i class="ri-question-answer-line nav-ic "></i>
+            </span>
+            <span class="n-count" *ngIf="messages.unread.length > 0">{{messages.unread.length}}</span>
+            <c-inv-top-nav-notification id="messages" [messages]="messages" [type]="'m'"></c-inv-top-nav-notification>
+          </div>
+        </div>
+        <div class="ic-c dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span>
+              <i class="ri-notification-3-line nav-ic "></i>
+            </span>
+            <span class="n-count" *ngIf="notifications.unread.length > 0">{{notifications.unread.length}}</span>
+            <c-inv-top-nav-notification id="notifications" [messages]="notifications" [type]="'n'"></c-inv-top-nav-notification>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="avatar-container h-100">
+    <div class="v-mid">
+      <img class="avatar" src="assets/images/avatar.png">
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,72 @@
+<div class="p-3">
+  <span class="page-title">Suppliers</span>
+</div>
+<div class="p-3">
+
+  <div class="row no-gutters">
+    <div class="col-6 p-0">
+      <div class="mb-2">
+        <label class="w-100">Name</label>
+        <div class="d-flex">
+        <input class="w-50" type="text" placeholder="First name">
+        <input class="w-50 ml-2" type="text" placeholder="Last name">
+        </div>
+      </div>
+      <div class="mb-2 ">
+        <label class="w-100">Contact </label>
+        <div class="d-flex">
+          <div class="w-50 d-flex no-wrap">
+            <div class="input-group-prepend">
+              <div class="input-group-text input-g-a">
+                <span><i class="ic ri-smartphone-line"></i></span>
+              </div>
+            </div>
+            <input class="w-100" type="text" placeholder="Mobile">
+          </div>
+          <div class="w-50 ml-2 d-flex no-wrap">
+            <div class="input-group-prepend">
+              <div class="input-group-text input-g-a">
+                <span><i class="ic ri-phone-line"></i></span>
+              </div>
+            </div>
+            <input class="w-100" type="text" placeholder="Fixed line">
+          </div>
+        </div>
+      </div>
+      <div class="mb-2">
+        <label class="w-100">Email address</label>
+        <input class="w-100" type="text" placeholder="example@example.com">
+      </div>
+
+    </div>
+    <div class="col-6 p-0 pl-5">
+      <div class="mb-2 ">
+        <label class="w-100">Products categories</label>
+        <ng-select class="custom" [multiple]="false" placeholder="Find main categories .."
+                   [addTag]="true" [bindLabel]="'value'"
+                   [addTagText]="'Searching for ..'"
+                   [items]="itemList"></ng-select>
+      </div>
+
+      <div class="mb-2 ">
+        <label class="w-100">Related product groups ( {{selectedCount}} selected )</label>
+        <div class="d-flex mt-2" style="flex-wrap: wrap;">
+          <div (click)="selectOrDeselect(pType)" class="product-type mb-1" [ngClass]="pType.isSelected ? 'selected': ''" *ngFor="let pType of relatedProducts">
+            <div class="v-mid">
+              <span>{{pType.label}}</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <button class="cit-btn cit-btn-error cit-btn-transparent mr-2">Cancel</button>
+      <button class="cit-btn cit-btn-success">Save</button>
+    </div>
+  </div>
+
+
+
+</div>

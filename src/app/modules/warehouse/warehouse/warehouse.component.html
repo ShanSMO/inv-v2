@@ -1,0 +1,69 @@
+<div>
+
+  <div class="p-3 d-flex">
+    <div class="w-100">
+      <span class="page-title">Warehouses</span>
+    </div>
+    <div>
+      <button class="cit-btn" routerLink="/warehouses-add">Add new</button>
+    </div>
+  </div>
+
+  <div class="row no-gutters p-3">
+    <div class="col-5" style="height: 75vh;overflow: auto;">
+
+      <div class="d-flex wh-li" *ngFor="let wh of warehouseList">
+        <div>
+          <div class="wh-name">
+            <span>Warehouse {{wh.code}}</span>
+          </div>
+          <div class="wh-location">
+            <span><i class="ri-map-pin-line"></i></span>&nbsp;
+            <span>{{wh.location}}</span>
+          </div>
+          <div class="wh-contact">
+            <span class="em"><i class="ri-mail-line ic"></i>&nbsp;abc@cit.com</span>
+            &nbsp; <span>|</span> &nbsp;
+            <span class="tp"><i class="ri-phone-line ic"></i>&nbsp;{{wh.contact}}</span>
+          </div>
+        </div>
+        <div></div>
+      </div>
+
+    </div>
+    <div class="col-7">
+      <div class="map-area" id="map">
+
+      </div>
+    </div>
+  </div>
+
+
+<!--  <div class="p-3">-->
+<!--    <table class="table table-striped table-bordered">-->
+<!--      <thead>-->
+<!--      <tr>-->
+<!--        <th scope="col">#</th>-->
+<!--        <th scope="col">ID</th>-->
+<!--        <th scope="col">Location</th>-->
+<!--        <th scope="col">Contact</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--      <tr *ngFor="let warehouse of warehouseList;let id = index;">-->
+<!--        <th scope="row">{{id+1}}</th>-->
+<!--        <td>{{warehouse.code}}</td>-->
+<!--        <td>{{warehouse.location}}</td>-->
+<!--        <td>{{warehouse.contact}}</td>-->
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+<!--  </div>-->
+
+</div>
+
+
+<div id="popup" class="ol-popup">
+  <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+  <div id="popup-content"></div>
+</div>

@@ -1,0 +1,123 @@
+<div class="side-bar-container" [ngClass]="currentSize == 'MIN' ? 'min-sb':'max-sb'">
+
+  <div class="brand">
+    <div class="v-mid">
+      <div>
+        <span class="t1">CIT </span>
+        <span class="t2">Inventory</span>
+      </div>
+      <div class="lh-0-5">
+        <span class="version">Version 1.0.0</span>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <ul class="menu-li">
+      <li>
+        <div class="li-container">
+          <span class="menu-ic">
+            <i class="ri-dashboard-fill"></i>
+          </span>
+          <span class="menu-lbl">Dashboard</span>
+        </div>
+      </li>
+      <li>
+        <div class="li-container">
+          <a data-toggle="collapse" href="#p">
+            <div>
+              <span class="menu-ic">
+                <i class="ri-team-fill"></i>
+              </span>
+              <span class="menu-lbl">Products</span>
+            </div>
+          </a>
+        </div>
+        <ul class="collapse sub-menu-li " id="p">
+          <li routerLink="/suppliers" class="ind-1">
+            <div class="li-container">
+                <span class="menu-ic">
+                  <i class="ri-team-fill"></i>
+                </span>
+              <span class="menu-lbl">Category</span>
+            </div>
+          </li>
+          <li routerLink="/products" class="ind-1">
+            <div class="li-container">
+                <span class="menu-ic">
+                  <i class="ri-team-fill"></i>
+                </span>
+              <span class="menu-lbl">Products</span>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li routerLink="/suppliers">
+        <div class="li-container">
+          <span class="menu-ic">
+            <i class="ri-team-fill"></i>
+          </span>
+          <span class="menu-lbl">Suppliers</span>
+        </div>
+      </li>
+      <li routerLink="/warehouses">
+        <div class="li-container">
+          <span class="menu-ic">
+            <i class="ri-store-3-fill"></i>
+          </span>
+          <span class="menu-lbl">Warehouses</span>
+        </div>
+      </li>
+<!--      <li>-->
+<!--        <div class="li-container">-->
+<!--          <span class="menu-ic">-->
+<!--            <i class="ri-calendar-todo-line"></i>-->
+<!--          </span>-->
+<!--          <span class="menu-lbl">Calendar</span>-->
+<!--        </div>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <div class="li-container">-->
+<!--          <span class="menu-ic">-->
+<!--            <i class="ri-bar-chart-fill"></i>-->
+<!--          </span>-->
+<!--          <span class="menu-lbl">Analytics</span>-->
+<!--        </div>-->
+<!--      </li>-->
+      <li routerLink="/pos">
+        <div class="li-container">
+          <span class="menu-ic">
+            <i class="ri-mail-send-line"></i>
+          </span>
+          <span class="menu-lbl">POS</span>
+        </div>
+      </li>
+      <li>
+        <div class="li-container">
+          <span class="menu-ic">
+            <i class="ri-mail-send-line"></i>
+          </span>
+          <span class="menu-lbl">Mails</span>
+        </div>
+      </li>
+<!--      <li routerLink="/payment">-->
+<!--        <div class="li-container">-->
+<!--          <span class="menu-ic">-->
+<!--            <i class="ri-money-pound-circle-line"></i>-->
+<!--          </span>-->
+<!--          <span class="menu-lbl">Payments</span>-->
+<!--        </div>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <div class="li-container">-->
+<!--          <span class="menu-ic">-->
+<!--            <i class="ri-question-line"></i>-->
+<!--          </span>-->
+<!--          <span class="menu-lbl">Help</span>-->
+<!--        </div>-->
+<!--      </li>-->
+    </ul>
+  </div>
+
+
+</div>
