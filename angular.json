@@ -29,7 +29,8 @@
               "node_modules/remixicon/fonts/remixicon.css",
               "node_modules/@ng-select/ng-select/themes/default.theme.css",
               "src/assets/libs/open-layers-map/ol-v-3-1-1.css",
-              "node_modules/sweetalert2/dist/sweetalert2.min.css"
+              "node_modules/sweetalert2/dist/sweetalert2.min.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

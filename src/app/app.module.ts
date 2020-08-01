@@ -11,7 +11,10 @@ import {SupplierModule} from './modules/supplier/supplier.module';
 import {ProductModule} from './modules/product/product.module';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {PosModule} from './modules/pos/pos.module';
-import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {CitToastComponent} from './modules/cit-common/cit-toast/cit-toast.component';
+import {OauthModule} from './modules/oauth/oauth.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,12 @@ import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
     SupplierModule,
     ProductModule,
     NgSelectModule,
-    PosModule
+    OauthModule,
+    PosModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      toastComponent: CitToastComponent
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
