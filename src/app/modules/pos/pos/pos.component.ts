@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'c-inv-pos',
   templateUrl: './pos.component.html',
-  styleUrls: ['./pos.component.css'],
+  styleUrls: ['./pos.component.sass'],
 })
 export class PosComponent implements OnInit {
 
