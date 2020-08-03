@@ -1,44 +1,69 @@
-<div>
-</div>
-
-<div class="row no-gutters">
+<div class="row no-gutters" style="height: calc(100vh - 50px)">
   <!-- Item selection -->
-  <div class="col-6 p-3">
-    <div>
-      Item 1
+  <div class="col-5 p-3">
+    <!--  Search bar  -->
+    <div class="p-2">
+      <input type="text" class="w-100" placeholder="Search products..">
     </div>
-
+    <div class="d-flex" style="flex-wrap: wrap">
+      <div *ngFor="let product of products" class="p-itm-outer" (click)="addToCart(product)">
+        <div class="w-100 h-100 position-relative p-itm-inner">
+          <div class="vertical-mid text-center w-100" style="padding: 5px;">
+          {{product.itemName}}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="col-6 p-3" [formGroup]="billForm">
-    <div>
+  <div class="col-7 p-3 position-relative" [formGroup]="billForm">
+    <div style="height: 50px;">
+      Customer ID : {{billForm.get('customerId').value}}
+      date : {{billForm.get('dateTime').value | date : 'dd/MM/yyyy hh:mm:ss a'}}
+      Teller : {{billForm.get('tellerId').value}}
+    </div>
+    <div style="max-height: calc(100vh - 135px);
+    overflow-y: auto;">
       <table class="w-100">
         <thead>
         <tr>
           <th>Item | Code</th>
-          <th class="text-right">Unit Price (Rs.)</th>
+          <th class="text-right">Unit Price ({{billForm.get('currency').value.symbol}})</th>
           <th class="text-center">Qty</th>
           <th class="text-right">Total</th>
         </tr>
         </thead>
         <tbody formArrayName="items">
-        <tr  *ngFor="let item of getFormItems()?.value; let formArrayId=index;" [formGroupName]="formArrayId">
-          <td>Sunlight Soap | SS-0001</td>
-          <td class="text-right">55.00</td>
+        <tr  *ngFor="let item of billForm.get('items')['controls']; index as formArrayId;" [formGroupName]="formArrayId">
+          <td>{{item.get('itemName').value}} | {{item.get('itemCode').value}}</td>
+          <td class="text-right">{{item.get('unitPrice').value | number: '1.2-2'}}</td>
           <td>
-            <c-inv-unit-adder></c-inv-unit-adder>
+            <c-inv-unit-adder formControlName="qty"></c-inv-unit-adder>
           </td>
-          <td class="text-right">55.00</td>
+          <td class="text-right">{{item.get('total').value | number: '1.2-2'}}</td>
         </tr>
         </tbody>
       </table>
     </div>
 
-    <div>
-      customerId: {{billForm.get('customerId').value}}
+    <div style="position: absolute;
+    width: 100%;
+    bottom: 0;
+    right: 0;background-color: #efefef;
+    padding: 1rem;">
+      Sub Total : {{billForm.get('subTotal').value}}
+      Discounts : {{billForm.get('discount').value}}
+      Tax : {{billForm.get('tax').value}}
+
+      <div class="row no-gutters">
+        <div class="col-6 text-right">
+          <span style="font-size: 30px;font-weight: 600;color: #6e6e6e;">Total :</span>
+        </div>
+        <div class="col-6 text-right">
+          <span style="font-size: 30px;font-weight: 600;color: #6e6e6e;">{{billForm.get('total').value | number:'1.2-2'}}</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
-<button (click)="setFormItems()">Update</button>
 
