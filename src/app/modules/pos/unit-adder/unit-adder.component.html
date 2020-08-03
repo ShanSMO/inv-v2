@@ -1,0 +1,21 @@
+<div class="d-flex">
+  <div>
+    <div class="act-a-cont act-minus" (click)="setCount('REMOVE')">
+      <div class="vertical-mid w-100">
+        <i class="ri-subtract-line"></i>
+      </div>
+    </div>
+  </div>
+  <div style="margin: 5px;width: 40px;" class="position-relative">
+    <div class="vertical-mid w-100 text-center">
+      <input class="qty-input" type="number" value="{{count}}">
+    </div>
+  </div>
+  <div>
+    <div class="act-a-cont act-add"  (click)="setCount('ADD')">
+      <div class="vertical-mid w-100">
+        <i class="ri-add-line"></i>
+      </div>
+    </div>
+  </div>
+</div>
