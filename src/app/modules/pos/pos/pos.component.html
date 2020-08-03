@@ -1,1 +1,44 @@
-<button (click)="test()">test</button>
+<div>
+</div>
+
+<div class="row no-gutters">
+  <!-- Item selection -->
+  <div class="col-6 p-3">
+    <div>
+      Item 1
+    </div>
+
+  </div>
+
+  <div class="col-6 p-3" [formGroup]="billForm">
+    <div>
+      <table class="w-100">
+        <thead>
+        <tr>
+          <th>Item | Code</th>
+          <th class="text-right">Unit Price (Rs.)</th>
+          <th class="text-center">Qty</th>
+          <th class="text-right">Total</th>
+        </tr>
+        </thead>
+        <tbody formArrayName="items">
+        <tr  *ngFor="let item of getFormItems()?.value; let formArrayId=index;" [formGroupName]="formArrayId">
+          <td>Sunlight Soap | SS-0001</td>
+          <td class="text-right">55.00</td>
+          <td>
+            <c-inv-unit-adder></c-inv-unit-adder>
+          </td>
+          <td class="text-right">55.00</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      customerId: {{billForm.get('customerId').value}}
+    </div>
+  </div>
+</div>
+
+<button (click)="setFormItems()">Update</button>
+
