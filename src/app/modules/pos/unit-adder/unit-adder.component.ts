@@ -15,6 +15,7 @@ import {ControlContainer, ControlValueAccessor, FormControl, FormGroup, NG_VALUE
 export class UnitAdderComponent implements OnInit, ControlValueAccessor  {
 
   @Input() count = 0;
+  @Output() getEvent: EventEmitter<any> = new EventEmitter<any>();
 
   propagateChange = (_: any) => {};
 
@@ -35,6 +36,8 @@ export class UnitAdderComponent implements OnInit, ControlValueAccessor  {
         break;
       }
     }
+
+    this.getEvent.emit({});
   }
 
   registerOnChange(fn: any): void {

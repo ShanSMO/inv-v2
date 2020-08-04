@@ -2,8 +2,8 @@
   <!-- Item selection -->
   <div class="col-5 p-3">
     <!--  Search bar  -->
-    <div class="p-2">
-      <input type="text" class="w-100" placeholder="Search products..">
+    <div class="p-1">
+      <input type="text" class="w-100" placeholder="Search products.." style="background-color: transparent;border-radius: 3px;">
     </div>
     <div class="d-flex" style="flex-wrap: wrap">
       <div *ngFor="let product of products" class="p-itm-outer" (click)="addToCart(product)">
@@ -38,7 +38,7 @@
           <td>{{item.get('itemName').value}} | {{item.get('itemCode').value}}</td>
           <td class="text-right">{{item.get('unitPrice').value | number: '1.2-2'}}</td>
           <td>
-            <c-inv-unit-adder formControlName="qty"></c-inv-unit-adder>
+            <c-inv-unit-adder formControlName="qty" (getEvent)="updatePriceTotal($event, formArrayId)"></c-inv-unit-adder>
           </td>
           <td class="text-right">{{item.get('total').value | number: '1.2-2'}}</td>
         </tr>
