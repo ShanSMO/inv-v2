@@ -3,13 +3,14 @@
   <div class="col-5 p-3">
     <!--  Search bar  -->
     <div class="p-1">
-      <input type="text" class="w-100" placeholder="Search products.." style="background-color: transparent;border-radius: 3px;">
+      <input type="text" class="w-100" placeholder="Search products.."
+             style="background-color: transparent;border-radius: 3px;">
     </div>
     <div class="d-flex" style="flex-wrap: wrap">
       <div *ngFor="let product of products" class="p-itm-outer" (click)="addToCart(product)">
         <div class="w-100 h-100 position-relative p-itm-inner">
           <div class="vertical-mid text-center w-100" style="padding: 5px;">
-          {{product.itemName}}
+            {{product.itemName}}
           </div>
         </div>
       </div>
@@ -17,13 +18,18 @@
   </div>
 
   <div class="col-7 p-3 position-relative" [formGroup]="billForm">
-    <div style="height: 50px;">
-      Customer ID : {{billForm.get('customerId').value}}
-      date : {{billForm.get('dateTime').value | date : 'dd/MM/yyyy hh:mm:ss a'}}
-      Teller : {{billForm.get('tellerId').value}}
+    <div class="row no-gutters bill-info">
+      <div class="col-4">
+        <span>#00012   {{billForm.get('customerId').value}}</span>
+      </div>
+      <div class="col-4">
+        <strong style="color: #6e6e6e">{{billForm.get('dateTime').value | date : 'dd/MM/yyyy hh:mm:ss a'}}</strong>
+      </div>
+      <div class="col-4">
+        <span>Teller : {{billForm.get('tellerId').value}}</span>
+      </div>
     </div>
-    <div style="max-height: calc(100vh - 135px);
-    overflow-y: auto;">
+    <div style="max-height: calc(100vh - 245px);overflow-y: auto;">
       <table class="w-100">
         <thead>
         <tr>
@@ -34,11 +40,12 @@
         </tr>
         </thead>
         <tbody formArrayName="items">
-        <tr  *ngFor="let item of billForm.get('items')['controls']; index as formArrayId;" [formGroupName]="formArrayId">
+        <tr *ngFor="let item of billForm.get('items')['controls']; index as formArrayId;" [formGroupName]="formArrayId">
           <td>{{item.get('itemName').value}} | {{item.get('itemCode').value}}</td>
           <td class="text-right">{{item.get('unitPrice').value | number: '1.2-2'}}</td>
           <td>
-            <c-inv-unit-adder formControlName="qty" (getEvent)="updatePriceTotal($event, formArrayId)"></c-inv-unit-adder>
+            <c-inv-unit-adder formControlName="qty"
+                              (getEvent)="updatePriceTotal($event, formArrayId)"></c-inv-unit-adder>
           </td>
           <td class="text-right">{{item.get('total').value | number: '1.2-2'}}</td>
         </tr>
@@ -46,21 +53,48 @@
       </table>
     </div>
 
-    <div style="position: absolute;
-    width: 100%;
-    bottom: 0;
-    right: 0;background-color: #efefef;
-    padding: 1rem;">
-      Sub Total : {{billForm.get('subTotal').value}}
-      Discounts : {{billForm.get('discount').value}}
-      Tax : {{billForm.get('tax').value}}
-
+    <div class="section-total">
       <div class="row no-gutters">
-        <div class="col-6 text-right">
-          <span style="font-size: 30px;font-weight: 600;color: #6e6e6e;">Total :</span>
+        <div class="col-6" style="font-size: 13px;">
+          <div class="row no-gutters">
+            <div class="col-4">Sub Total</div>
+            <div class="col-1">:</div>
+            <div class="col-7 text-right">{{billForm.get('subTotal').value | number:'1.2-2' }}</div>
+          </div>
+          <div class="row no-gutters">
+            <div class="col-4">Discounts</div>
+            <div class="col-1">:</div>
+            <div class="col-7 text-right">{{billForm.get('discount').value | number:'1.2-2' }}</div>
+          </div>
+          <div class="row no-gutters">
+            <div class="col-4">Tax</div>
+            <div class="col-1">:</div>
+            <div class="col-7 text-right">{{billForm.get('tax').value | number:'1.2-2' }}</div>
+          </div>
         </div>
-        <div class="col-6 text-right">
-          <span style="font-size: 30px;font-weight: 600;color: #6e6e6e;">{{billForm.get('total').value | number:'1.2-2'}}</span>
+        <div class="col-6">
+          <div class="row no-gutters vertical-mid w-100">
+            <div class="col-5 text-right">
+              <span style="font-size: 30px;font-weight: 600;color: #6e6e6e;">Total :</span>
+            </div>
+            <div class="col-7 text-right">
+                <span
+                  style="font-size: 30px;font-weight: 600;color: #6e6e6e;">{{billForm.get('total').value | number:'1.2-2'}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row no-gutters" style="margin-top: 10px;">
+        <div class="col-8">
+          <input [ngModelOptions]="{standalone: true}" (keyup)="setBalance()"
+                 [(ngModel)]="paidAmount" type="text"
+                 class="text-right p-m-inp"
+                 placeholder="Paid amount">
+          <span style="margin-left: 15px;"></span>
+          <span style="font-weight: 600;">Balance : {{ balance | number:'1.2-2'}}</span>
+        </div>
+        <div class="col-4 text-right">
+          <button class="cit-btn cit-btn-success">Pay ({{billForm.get('total').value | number:'1.2-2'}})</button>
         </div>
       </div>
     </div>

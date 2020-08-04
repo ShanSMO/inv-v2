@@ -10,6 +10,10 @@ import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 })
 export class PosComponent implements OnInit {
 
+  constructor(private messagingService: MessagingService,
+              private formBuilder: FormBuilder) { }
+
+  paidAmount = 0;
   products: any[] = [
     {id: 1, code: 'SS-01', itemName: 'Sunlight Soap', unitPrice: 55.00},
     {id: 2, code: 'RR-01', itemName: 'Red Rice', unitPrice: 90.00},
@@ -20,6 +24,8 @@ export class PosComponent implements OnInit {
     {id: 7, code: '', itemName: 'Chocolate Buiscuts', unitPrice: 55.00},
     {id: 8, code: '', itemName: 'White Chocolate (Cadbuery)', unitPrice: 355.00},
     {id: 9, code: '', itemName: 'Elephant House Ice Cream (4L)', unitPrice: 355.00},
+    {id: 10, code: '', itemName: 'Jack Macarol Salmon', unitPrice: 255.00},
+    {id: 11, code: '', itemName: 'Highland Milk Powder (2Kg)', unitPrice: 1500.00},
   ];
   billForm: FormGroup = new FormGroup({
     customerId: new FormControl(),
@@ -33,9 +39,7 @@ export class PosComponent implements OnInit {
     total: new FormControl()
   });
   itemFormArray: FormArray;
-
-  constructor(private messagingService: MessagingService,
-              private formBuilder: FormBuilder) { }
+  balance = 0;
 
   ngOnInit(): void {
     this.setBillForm();
@@ -80,7 +84,7 @@ export class PosComponent implements OnInit {
   addToCart(item) {
     this.itemFormArray = this.billForm.get('items') as FormArray;
     const formItem = this.itemFormArray.controls.find(product => {
-      return product.value.itemId == item.id;
+      return product.value.itemId === item.id;
     });
 
     if (formItem != null) {
@@ -106,6 +110,18 @@ export class PosComponent implements OnInit {
     for (const item of this.itemFormArray.value) {
       total = total + item.total;
     }
-    this.billForm.get('total').setValue(total);
+    this.billForm.get('subTotal').setValue(total);
+    this.billForm.get('total').setValue(this.billForm.get('subTotal').value - this.billForm.get('discount').value);
   }
+
+  removeItem() {
+
+  }
+
+  setBalance() {
+    if (this.billForm.get('total').value > 0) {
+      this.balance = this.paidAmount - this.billForm.get('total').value;
+    }
+  }
+
 }
