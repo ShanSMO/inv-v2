@@ -1,16 +1,52 @@
 <div class="row no-gutters" style="height: calc(100vh - 50px)">
   <!-- Item selection -->
   <div class="col-5 p-3">
-    <!--  Search bar  -->
-    <div class="p-1">
-      <input type="text" class="w-100" placeholder="Search products.."
-             style="background-color: transparent;border-radius: 3px;">
-    </div>
-    <div class="d-flex" style="flex-wrap: wrap">
-      <div *ngFor="let product of products" class="p-itm-outer" (click)="addToCart(product)">
-        <div class="w-100 h-100 position-relative p-itm-inner">
-          <div class="vertical-mid text-center w-100" style="padding: 5px;">
-            {{product.itemName}}
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item w-50 text-center" role="presentation">
+        <a class="nav-link active" id="home-tab"
+           data-toggle="tab" href="#home" role="tab" aria-controls="home"
+           aria-selected="true">
+          <span class="tab-ic">
+            <i class="ri-barcode-line"></i>
+          </span>
+          <span>Scan</span>
+        </a>
+      </li>
+      <li class="nav-item w-50 text-center" role="presentation">
+        <a class="nav-link" id="profile-tab"
+           data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+           aria-selected="false">
+          <span class="tab-ic">
+            <i class="ri-search-line"></i>
+          </span>
+          <span>Search</span>
+          </a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+        <div class="text-center">
+        <span style="font-size: 130px;color: #c3c3c3">
+          <i class="ri-qr-code-line"></i>
+        </span>
+        </div>
+
+      </div>
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <!--  Search bar  -->
+        <div class="p-1">
+          <input type="text" class="w-100" placeholder="Search products.."
+                 style="background-color: transparent;border-radius: 3px;">
+        </div>
+        <div class="d-flex" style="flex-wrap: wrap">
+          <div *ngFor="let product of products" class="p-itm-outer" (click)="addToCart(product)">
+            <div class="w-100 h-100 position-relative p-itm-inner">
+              <div class="vertical-mid text-center w-100" style="padding: 5px;">
+                {{product.itemName}}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -19,13 +55,13 @@
 
   <div class="col-7 p-3 position-relative" [formGroup]="billForm">
     <div class="row no-gutters bill-info">
-      <div class="col-4">
+      <div class="col-4 text-left">
         <span>#00012   {{billForm.get('customerId').value}}</span>
       </div>
       <div class="col-4">
         <strong style="color: #6e6e6e">{{billForm.get('dateTime').value | date : 'dd/MM/yyyy hh:mm:ss a'}}</strong>
       </div>
-      <div class="col-4">
+      <div class="col-4 text-right">
         <span>Teller : {{billForm.get('tellerId').value}}</span>
       </div>
     </div>
@@ -36,7 +72,7 @@
           <th>Item | Code</th>
           <th class="text-right">Unit Price ({{billForm.get('currency').value.symbol}})</th>
           <th class="text-center">Qty</th>
-          <th class="text-right">Total</th>
+          <th class="text-right">Total ({{billForm.get('currency').value.symbol}})</th>
         </tr>
         </thead>
         <tbody formArrayName="items">
@@ -85,7 +121,7 @@
         </div>
       </div>
       <div class="row no-gutters" style="margin-top: 10px;">
-        <div class="col-8">
+        <div class="col-7">
           <input [ngModelOptions]="{standalone: true}" (keyup)="setBalance()"
                  [(ngModel)]="paidAmount" type="text"
                  class="text-right p-m-inp"
@@ -93,7 +129,8 @@
           <span style="margin-left: 15px;"></span>
           <span style="font-weight: 600;">Balance : {{ balance | number:'1.2-2'}}</span>
         </div>
-        <div class="col-4 text-right">
+        <div class="col-5 text-right">
+          <button class="cit-btn cit-btn-error-o mr-1">Hold</button>
           <button class="cit-btn cit-btn-success">Pay ({{billForm.get('total').value | number:'1.2-2'}})</button>
         </div>
       </div>

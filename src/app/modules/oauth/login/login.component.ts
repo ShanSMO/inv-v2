@@ -14,7 +14,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.route.navigateByUrl('/dashboard');
+    window.location.href =
+      'http://localhost:8180/auth/realms/cit-inventory/protocol/openid-connect/auth?' +
+      'response_type=code&scope=openid%20email&client_id=inventory-app&redirect_uri=http://localhost:4200/dashboard';
+    // this.route.navigateByUrl('/dashboard');
   }
 
 }
