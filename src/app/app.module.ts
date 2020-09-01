@@ -22,7 +22,7 @@ import {OauthModule} from './modules/oauth/oauth.module';
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {useHash: true}),
     LayoutsModule,
     DashboardModule,
     CitCommonModule,

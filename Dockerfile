@@ -1,7 +1,4 @@
-FROM nginx:perl
-#COPY ./dist /usr/share/nginx/html
-RUN ls
-
-
+FROM nginx:alpine
+COPY ./inventory-portal /usr/share/nginx/html
+LABEL img="inventory-fe"
 CMD ["nginx", "-g", "daemon off;"]
-EXPOSE 6000

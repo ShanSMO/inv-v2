@@ -35,7 +35,6 @@ export const routes: Routes = [
           {path: 'suppliers', component: SuppliersComponent},
           {path: 'products', component: ProductsComponent},
           {path: 'pos', component: PosComponent},
-
         ]
       },
     ]
